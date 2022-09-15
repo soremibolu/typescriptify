@@ -4,7 +4,9 @@ import { Movie } from "../types/Movie";
 
 const Info = () => {
   const { id } = useParams<string>();
-  const movieDetailed: Movie[] = Data.movies.filter((movie) => movie.id.toString() === id);
+  const movieDetailed: Movie[] = Data.movies.filter(
+    (movie) => movie.id.toString() === id
+  );
 
   return (
     <>

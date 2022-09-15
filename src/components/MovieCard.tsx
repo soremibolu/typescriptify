@@ -1,7 +1,12 @@
 import React from "react";
 import { Movie } from "../types/Movie";
 
-const MovieCard = ({ title, runtime, year, posterUrl }: Pick<Movie, 'title' | 'runtime' | 'year' | 'posterUrl'>) => {
+const MovieCard = ({
+  title,
+  runtime,
+  year,
+  posterUrl,
+}: Pick<Movie, "title" | "runtime" | "year" | "posterUrl">) => {
   return (
     <>
       <div className="card-container">

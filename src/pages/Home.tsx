@@ -2,7 +2,7 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import SearchPanel from "../components/SearchPanel";
 import Rail from "../components/Rail";
 import Data from "../data/data.json";
-import {Search} from "../types/Search";
+import { Search } from "../types/Search";
 import { Movie } from "../types/Movie";
 
 const Home = () => {
@@ -11,12 +11,10 @@ const Home = () => {
   const [director, setDirector] = useState<string>("");
   const [year, setYear] = useState<string>("");
 
-
   const filterData = (MovieData: Movie[], searchData: Search): Movie[] => {
-
-
     const filteredTitles = MovieData.filter(
-      (movie: Movie) => movie.title.toLowerCase() === searchData.title.toLowerCase()
+      (movie: Movie) =>
+        movie.title.toLowerCase() === searchData.title.toLowerCase()
     );
     const filteredDirectors = MovieData.filter(
       (movie: Movie) =>
