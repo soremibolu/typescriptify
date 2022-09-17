@@ -8,7 +8,7 @@ const Rail = ({ movies }: { movies: Movie[] }) => {
     <>
       {movies.length ? (
         <>
-          <h3 className="rail-header">Search results:</h3>
+          <h3 className="rail-header">Search results</h3>
           <div className="rail">
             {movies.map(
               (movie: Movie): JSX.Element => (
@@ -24,7 +24,12 @@ const Rail = ({ movies }: { movies: Movie[] }) => {
             )}
           </div>
         </>
-      ) : null}
+      ) : (
+        <>
+          <h3 className="rail-header">Search results</h3>
+          <p className="no-results">No results found</p>
+        </>
+      )}
     </>
   );
 };
