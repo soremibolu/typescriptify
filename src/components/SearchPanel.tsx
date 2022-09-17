@@ -4,7 +4,8 @@ import { SearchPanelProps } from "../types/SearchPanelProps";
 
 const SearchPanel = ({ handleChange, handleClick }: SearchPanelProps) => {
   return (
-    <>
+    <div className="search-container">
+      <h3>Search for movie</h3>
       <div className="search-panel">
         <form onSubmit={handleClick}>
           <input
@@ -33,7 +34,7 @@ const SearchPanel = ({ handleChange, handleClick }: SearchPanelProps) => {
           <Button name="Search" />
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -14,21 +14,31 @@ $extra:lightgrey;
     background-color: white;
 }
 
-.input{
-    border: none;
-    background-color: $extra;
-    padding: 10px;
-    width: 300px;
-    display: flex;
-    margin: 10px 0px;
-}
-.input:first-child {
+.search-container{
+    width: 40%;
+    padding: 20px 20px;
     margin-top: 50px;
-}
-
-.search-panel{
+    box-shadow: 5px 10px 15px $extra;
+    margin-left: calc(30% - 20px);
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+
+    .search-panel{
+        display: flex;
+        justify-content: center;
+    }
+
+    .input {
+        border: none;
+        background-color: $extra;
+        padding: 10px;
+        width: 300px;
+        display: flex;
+        margin: 10px 0px;
+    }
+
 }
 
 .search-button{
@@ -40,11 +50,12 @@ $extra:lightgrey;
     font-weight: bold;
     cursor: pointer;
     transition: .3s;
+    
+    &:hover{
+        background-color: $primary-hover;
+    }
 }
 
-.search-button:hover{
-    background-color: $primary-hover;
-}
 
 
 .card-container {
@@ -58,12 +69,13 @@ $extra:lightgrey;
     overflow-y: hidden;
     background-color: black;
     border-radius: 3px;
+    
+    &:hover {
+        height: 460px;
+        width: 300px;
+    }
 }
 
-.card-container:hover {
-    height: 460px;
-    width: 300px;
-}
 
 .card-image {
     width: 100%;
