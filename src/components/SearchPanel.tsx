@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./Button";
 import { SearchPanelProps } from "../types/SearchPanelProps";
 
-const SearchPanel = ({ handleChange, handleClick }: SearchPanelProps) => {
+const SearchPanel = ({ handleChange, handleClick, year, title, director}: SearchPanelProps) => {
   return (
     <div className="search-container">
       <h3>Search for movie</h3>
@@ -14,6 +14,7 @@ const SearchPanel = ({ handleChange, handleClick }: SearchPanelProps) => {
             type="text"
             placeholder="Title..."
             onChange={handleChange}
+            value={title}
           />
           <input
             id="director"
@@ -21,6 +22,7 @@ const SearchPanel = ({ handleChange, handleClick }: SearchPanelProps) => {
             type="text"
             placeholder="Director..."
             onChange={handleChange}
+            value={director}
           />
           <input
             id="year"
@@ -29,6 +31,7 @@ const SearchPanel = ({ handleChange, handleClick }: SearchPanelProps) => {
             maxLength={4}
             placeholder="Year..."
             onChange={handleChange}
+            value={year}
           />
 
           <Button name="Search" />

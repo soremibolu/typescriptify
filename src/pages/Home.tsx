@@ -45,7 +45,7 @@ const Home = () => {
     }
   };
 
-  const resetFields = () => {
+  const resetFields = (): void => {
     setTitle("");
     setDirector("");
     setYear("");
@@ -70,7 +70,7 @@ const Home = () => {
     <>
       <div className="container">
         <div className="search">
-          <SearchPanel handleChange={handleChange} handleClick={handleClick} />
+          <SearchPanel handleChange={handleChange} handleClick={handleClick} title={title} year={year} director={director}/>
         </div>
         <Rail movies={movies} />
       </div>
