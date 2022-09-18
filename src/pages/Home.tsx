@@ -12,23 +12,13 @@ const Home = () => {
   const [year, setYear] = useState<string>("");
 
   const filterData = (MovieData: Movie[], searchData: Search): Movie[] => {
-    const filteredTitles = MovieData.filter(
+    const filteredMovies = MovieData.filter(
       (movie: Movie) =>
-        movie.title.toLowerCase() === searchData.title.toLowerCase()
+        movie.title.toLowerCase() === searchData.title.toLowerCase() ||
+        movie.director.toLowerCase() === searchData.director.toLowerCase() ||
+        movie.year === searchData.year
     );
-    const filteredDirectors = MovieData.filter(
-      (movie: Movie) =>
-        movie.director.toLowerCase() === searchData.director.toLowerCase()
-    );
-    const filteredYears = MovieData.filter(
-      (movie: Movie) => movie.year === searchData.year
-    );
-
-    const moviesFiltered = filteredTitles.concat(
-      filteredDirectors,
-      filteredYears
-    );
-    return moviesFiltered;
+    return filteredMovies;
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +60,13 @@ const Home = () => {
     <>
       <div className="container">
         <div className="search">
-          <SearchPanel handleChange={handleChange} handleClick={handleClick} title={title} year={year} director={director}/>
+          <SearchPanel
+            handleChange={handleChange}
+            handleClick={handleClick}
+            title={title}
+            year={year}
+            director={director}
+          />
         </div>
         <Rail movies={movies} />
       </div>

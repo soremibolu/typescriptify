@@ -2,7 +2,13 @@ import React from "react";
 import Button from "./Button";
 import { SearchPanelProps } from "../types/SearchPanelProps";
 
-const SearchPanel = ({ handleChange, handleClick, year, title, director}: SearchPanelProps) => {
+const SearchPanel = ({
+  handleChange,
+  handleClick,
+  year,
+  title,
+  director,
+}: SearchPanelProps) => {
   return (
     <div className="search-container">
       <h3>Search for movie</h3>
