@@ -21,7 +21,7 @@ const Home = () => {
     return filteredMovies;
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     switch (e.target.id) {
       case "title":
         setTitle(e.target.value);
@@ -49,7 +49,7 @@ const Home = () => {
     }
   };
 
-  const handleClick = (e: FormEvent<HTMLFormElement>) => {
+  const handleClick = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const searchTerms: Search = {
       title: title ? title : "",
