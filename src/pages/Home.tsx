@@ -42,7 +42,11 @@ const Home = () => {
   };
 
   const handleSearch = (searchTerms: Search): void => {
-    setMovies(filterData(Data.movies, searchTerms));
+    if (!title && !director && !year) {
+      alert("input something");
+    } else {
+      setMovies(filterData(Data.movies, searchTerms));
+    }
   };
 
   const handleClick = (e: FormEvent<HTMLFormElement>) => {
