@@ -43,7 +43,7 @@ const Home = () => {
 
   const handleSearch = (searchTerms: Search): void => {
     if (!title && !director && !year) {
-      alert("input something");
+      alert("All fields are empty. Please fill at least one.");
     } else {
       setMovies(filterData(Data.movies, searchTerms));
     }
