@@ -1,34 +1,49 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Data from "../data/data.json";
-import { Movie } from "../types/Movie";
-import getMovieInfo from "../utils/getMovieInfo";
+import { Elephant } from "../types/Elephants";
+import getElephantInfo from "../utils/getElephantInfo";
 
 const Info = () => {
-  type idParams = {
-    id: string;
+  const { id } = useParams<string>();
+  const [elephantDetails, setElephantDetails] = useState<Elephant[]>([]);
+
+  useEffect(() => {
+    fetchElephant();
+    console.log("1", elephantDetails);
+  }, []);
+
+  const fetchElephant = async () => {
+    const response = await fetch(
+      `https://elephant-api.herokuapp.com/elephants`
+    );
+    const data: Elephant[] = await response.json();
+    setElephantDetails(getElephantInfo(data, id));
+    console.log("2", elephantDetails);
   };
-  const { id } = useParams<idParams>();
-  const movieDetailed: Movie[] = getMovieInfo(Data.movies, id);
 
   return (
     <>
-      <div className="movie-detail-container">
-        <div
-          className="movie-detail-image"
-          style={{ backgroundImage: `url(${movieDetailed[0].posterUrl})` }}
-        ></div>
-        <div className="movie-detail-info">
-          <span>
-            <h3>{movieDetailed[0].title} </h3>
-            <p>{movieDetailed[0].year}</p>
-          </span>
-          <p>{movieDetailed[0].runtime} minutes</p>
-          <p>{movieDetailed[0].plot}</p>
-          <p>Director: {movieDetailed[0].director}</p>
-          <p>Starring: {movieDetailed[0].actors}</p>
-          <p>{movieDetailed[0].genres.map((genre) => genre + " ")}</p>
+      {elephantDetails.length ? (
+        <div className="movie-detail-container">
+          <div
+            className="movie-detail-image"
+            style={{ backgroundImage: `url(${elephantDetails[0].image})` }}
+          ></div>
+          <div className="movie-detail-info">
+            <span>
+              <h3>{elephantDetails[0].name} </h3>
+              <p>{elephantDetails[0].sex}</p>
+            </span>
+            <p>Species: {elephantDetails[0].species}</p>
+            <p>{elephantDetails[0].note}</p>
+            <p>Affiliation: {elephantDetails[0].affiliation}</p>
+          </div>
         </div>
-      </div>
+      ) : (
+        <>
+          <p className="no-results">No results found</p>
+        </>
+      )}
     </>
   );
 };

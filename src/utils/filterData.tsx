@@ -1,15 +1,15 @@
 import React from "react";
 import { Search } from "../types/Search";
-import { Movie } from "../types/Movie";
+import { Elephant } from "../types/Elephants";
 
-const filterData = (MovieData: Movie[], searchData: Search): Movie[] => {
-  const filteredMovies = MovieData.filter(
-    (movie: Movie) =>
-      movie.title.toLowerCase() === searchData.title.toLowerCase() ||
-      movie.director.toLowerCase() === searchData.director.toLowerCase() ||
-      movie.year === searchData.year
+const filterData = (Data: Elephant[], searchData: Search): Elephant[] => {
+  const filteredElephants = Data.filter(
+    (elephant: Elephant) =>
+      elephant.name === searchData.name ||
+      elephant.species === searchData.species ||
+      elephant.affiliation === searchData.affiliation
   );
-  return filteredMovies;
+  return filteredElephants;
 };
 
 export default filterData;

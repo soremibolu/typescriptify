@@ -1,56 +1,69 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import SearchPanel from "../components/SearchPanel";
 import Rail from "../components/Rail";
 import Data from "../data/data.json";
 import { Search } from "../types/Search";
-import { Movie } from "../types/Movie";
+import { Elephant } from "../types/Elephants";
 import filterData from "../utils/filterData";
+//import fetchData from "../utils/fetchData";
 
 const Home = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [title, setTitle] = useState<string>("");
-  const [director, setDirector] = useState<string>("");
-  const [year, setYear] = useState<string>("");
+  const [elephants, setElephants] = useState<Elephant[]>([]);
+  const [filteredElephants, setFilteredElephants] = useState<Elephant[]>([]);
+  const [name, setName] = useState<string>("");
+  const [species, setSpecies] = useState<string>("");
+  const [affiliation, setAffiliation] = useState<string>("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     switch (e.target.id) {
-      case "title":
-        setTitle(e.target.value);
+      case "name":
+        setName(e.target.value);
         break;
-      case "director":
-        setDirector(e.target.value);
+      case "species":
+        setSpecies(e.target.value);
         break;
-      case "year":
-        setYear(e.target.value);
+      case "affiliation":
+        setAffiliation(e.target.value);
         break;
     }
   };
 
   const resetFields = (): void => {
-    setTitle("");
-    setDirector("");
-    setYear("");
+    setName("");
+    setSpecies("");
+    setAffiliation("");
   };
 
+  const fetchData = async () => {
+    const response = await fetch(
+      `https://elephant-api.herokuapp.com/elephants`
+    );
+    const data: Elephant[] = await response.json();
+    setElephants(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const handleSearch = (searchTerms: Search): void => {
-    if (!title && !director && !year) {
+    if (!name && !species && !affiliation) {
       alert("All fields are empty. Please fill at least one.");
     } else {
-      setMovies(filterData(Data.movies, searchTerms));
+      setFilteredElephants(filterData(elephants, searchTerms));
     }
   };
 
   const handleClick = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const searchTerms: Search = {
-      title: title ? title : "",
-      director: director ? director : "",
-      year: year ? year : "",
+      name: name ? name : "",
+      species: species ? species : "",
+      affiliation: affiliation ? affiliation : "",
     };
     handleSearch(searchTerms);
     resetFields();
   };
-
   return (
     <>
       <div className="container">
@@ -58,12 +71,12 @@ const Home = () => {
           <SearchPanel
             handleChange={handleChange}
             handleClick={handleClick}
-            title={title}
-            year={year}
-            director={director}
+            name={name}
+            species={species}
+            affiliation={affiliation}
           />
         </div>
-        <Rail movies={movies} />
+        <Rail elephants={filteredElephants} />
       </div>
     </>
   );

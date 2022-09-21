@@ -5,39 +5,38 @@ import { SearchPanelProps } from "../types/SearchPanelProps";
 const SearchPanel = ({
   handleChange,
   handleClick,
-  year,
-  title,
-  director,
+  name,
+  species,
+  affiliation,
 }: SearchPanelProps) => {
   return (
     <div className="search-container">
-      <h3>Search for movie</h3>
+      <h3>Search for Elephant</h3>
       <div className="search-panel">
         <form onSubmit={handleClick}>
           <input
-            id="title"
+            id="name"
             className="input"
             type="text"
-            placeholder="Title..."
+            placeholder="Name..."
             onChange={handleChange}
-            value={title}
+            value={name}
           />
           <input
-            id="director"
+            id="species"
             className="input"
             type="text"
-            placeholder="Director..."
+            placeholder="Species..."
             onChange={handleChange}
-            value={director}
+            value={species}
           />
           <input
-            id="year"
+            id="affiliation"
             className="input"
-            type="number"
-            maxLength={4}
-            placeholder="Year..."
+            type="text"
+            placeholder="Affiliation..."
             onChange={handleChange}
-            value={year}
+            value={affiliation}
           />
 
           <Button name="Search" />

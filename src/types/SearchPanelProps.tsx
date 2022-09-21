@@ -3,7 +3,7 @@ import { ChangeEvent, FormEvent } from "react";
 export type SearchPanelProps = {
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleClick: (e: FormEvent<HTMLFormElement>) => void;
-  year: string;
-  title: string;
-  director: string;
+  name: string;
+  species: string;
+  affiliation: string;
 };
