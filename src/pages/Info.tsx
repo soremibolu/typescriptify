@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom";
 import Data from "../data/data.json";
 import { Movie } from "../types/Movie";
+import getMovieInfo from "../utils/getMovieInfo";
 
 const Info = () => {
-  const { id } = useParams<string>();
-  const movieDetailed: Movie[] = Data.movies.filter(
-    (movie) => movie.id.toString() === id
-  );
+  type idParams = {
+    id: string;
+  };
+  const { id } = useParams<idParams>();
+  const movieDetailed: Movie[] = getMovieInfo(Data.movies, id);
 
   return (
     <>

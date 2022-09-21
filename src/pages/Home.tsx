@@ -4,22 +4,13 @@ import Rail from "../components/Rail";
 import Data from "../data/data.json";
 import { Search } from "../types/Search";
 import { Movie } from "../types/Movie";
+import filterData from "../utils/filterData";
 
 const Home = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [title, setTitle] = useState<string>("");
   const [director, setDirector] = useState<string>("");
   const [year, setYear] = useState<string>("");
-
-  const filterData = (MovieData: Movie[], searchData: Search): Movie[] => {
-    const filteredMovies = MovieData.filter(
-      (movie: Movie) =>
-        movie.title.toLowerCase() === searchData.title.toLowerCase() ||
-        movie.director.toLowerCase() === searchData.director.toLowerCase() ||
-        movie.year === searchData.year
-    );
-    return filteredMovies;
-  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     switch (e.target.id) {
